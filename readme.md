@@ -2,12 +2,6 @@
 Changes the background image of the desktop after a specified period of time.
 **Cannot be used as a plug-in.**
 
-## Table of Contents
-
-* Installation
-* Usage
-
-
 ## Installation
 To be able to use this program, you need to enable Google Custom Search API, generate API key credentials and set a project:
 
