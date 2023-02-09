@@ -128,7 +128,7 @@ def launchSearchEngine():
 		sys.stdout.write(traceback.format_exc())
 		sys.stdout.write("Error: " + e)
 	try:
-		downloaded_images = dlResults(images) # doooownlooooad
+		dlResults(images) # doooownlooooad
 	except Exception as e:
 		sys.stdout.write(traceback.format_exc())
 		sys.stdout.write("Error: " + e)
