@@ -1,4 +1,4 @@
-![Example](https://drive.google.com/file/d/1OorJMaYmUpo1KfF0oSmDU9u3o72la2Ue/view)
+![Example](wpchanger.gif)
 
 # Custom Wallpaper Changer
 Changes the background image of the desktop after a specified period of time.
