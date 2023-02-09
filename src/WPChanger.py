@@ -1,4 +1,4 @@
- # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 # This is a script that changes the image on the desktop.
 # Also responsible for minimizing to tray.
