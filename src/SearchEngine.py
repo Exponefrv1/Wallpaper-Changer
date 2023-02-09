@@ -143,17 +143,17 @@ def launchSearchEngine():
 		images = googleSearch() # seaaaarch
 	except Exception as e:
 		sys.stdout.write(traceback.format_exc())
-		sys.stdout.write(f"Error: " + e)
+		sys.stdout.write("Error: " + e)
 	try:
 		downloaded_images = dlResults(images) # doooownlooooad
 	except Exception as e:
 		sys.stdout.write(traceback.format_exc())
-		sys.stdout.write(f"Error: " + e)
+		sys.stdout.write("Error: " + e)
 	try:
 		writeResults(downloaded_images) # wriiiite results to confiiig
 	except Exception as e:
 		sys.stdout.write(traceback.format_exc())
-		sys.stdout.write(f"Error: " + e)
+		sys.stdout.write("Error: " + e)
 	finally:
 		logging.info("Finished work.")
 		input("Press any button to exit")
@@ -165,4 +165,4 @@ except KeyboardInterrupt:
 	sys.exit(0)
 except Exception as e:
 	sys.stdout.write(traceback.format_exc())
-	sys.stdout.write(f"Error: " + e)
+	sys.stdout.write("Error: " + e)
