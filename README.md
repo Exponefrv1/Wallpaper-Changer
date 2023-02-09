@@ -1,6 +1,6 @@
+# Custom Wallpaper Changer for Windows
 ![Example](wpchanger.gif)
 
-# Custom Wallpaper Changer
 Changes the background image of the desktop after a specified period of time.
 **Cannot be used as a plug-in.**
 
@@ -40,4 +40,3 @@ If you want to add your own images (already on your pc) - just upload them to th
 *That's all! Very easy, isn't it?*
 
 **You can set image change timeout by yourself in file 'config.ini' in src folder.**
-
