@@ -65,7 +65,7 @@ def change_wallpaper():
 	timeout = get_timeout() # get timeout
 	while True: # INFINITE LOOP, WOW!
 		directory = os.getcwd()+'\\images'
-		files = [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
+		files = [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))] # get all files from images folder
 		for name in files: # for wp in all wallpapers
 			path = f"{directory}\\{name}" # path to wallpaper
 			ctypes.windll.user32.SystemParametersInfoW(20, 0, path, 0) # change image (wiiiiindows)
