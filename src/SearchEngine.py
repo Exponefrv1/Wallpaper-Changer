@@ -81,7 +81,6 @@ def askParams():
 # Google search
 def googleSearch():
 	api_key, cx = getKeys(openConfig()) # getting api_key and cx key
-	print(api_key, cx)
 	if len(api_key) == 0 or len(cx) == 0: # check if api keys are not provided
 		exceptionExit("Provide an api key and cx key in config.ini. Then restart.")
 		return sys.exit(0) # exit if no
