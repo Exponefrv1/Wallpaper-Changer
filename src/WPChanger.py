@@ -39,6 +39,7 @@ def show_console():
 def hide_console():
 	ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 0)
 
+# clear console
 def cls():
 	os.system("cls")
 
@@ -94,4 +95,4 @@ try:
 	threading.Thread(target=create_tray_icon).start()
 except Exception as e:
 	sys.stdout.write(traceback.format_exc())
-	sys.stdout.write("Error: " + e)
+	sys.stdout.write(f"Error: {e}")

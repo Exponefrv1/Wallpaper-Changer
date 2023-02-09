@@ -10,6 +10,7 @@ import requests
 import traceback
 import configparser
 from PIL import Image
+from googleapiclient.errors import HttpError
 from google_images_search import GoogleImagesSearch
 
 
@@ -50,7 +51,7 @@ def search_params(query, req_count):
 # if something went wrong
 def exceptionExit(exception):
 	sys.stdout.write(exception) # print exception in console
-	input("Press something to continue...")
+	input("Press any button to exit")
 	cls() # clear console
 
 # check if value's type is integer
@@ -80,6 +81,7 @@ def askParams():
 # Google search
 def googleSearch():
 	api_key, cx = getKeys(openConfig()) # getting api_key and cx key
+	print(api_key, cx)
 	if len(api_key) == 0 or len(cx) == 0: # check if api keys are not provided
 		exceptionExit("Provide an api key and cx key in config.ini. Then restart.")
 		return sys.exit(0) # exit if no
@@ -114,7 +116,7 @@ def dlResults(results):
 				logging.info(f"Image {i} has a bad resolution. Successfully Removed.")
 			else:
 				img_names.append(f"image_{i}.jpg") # add to list of wp names this file (for write to config)
-				logging.info(f"Downloaded: {i}/{len(results)}")
+				logging.info(f"Downloaded: {i + 1}/{len(results)}")
 		else:
 			logging.warning(f"Failed to download image {i}: {image_url}")
 	logging.info("Finished downloading!")
@@ -124,17 +126,16 @@ def dlResults(results):
 def launchSearchEngine():
 	try:
 		images = googleSearch() # seaaaarch
-	except Exception as e:
-		sys.stdout.write(traceback.format_exc())
-		sys.stdout.write("Error: " + e)
+	except HttpError as e:
+		sys.stdout.write(f"Error: {e.reason}\n")
+		return
 	try:
 		dlResults(images) # doooownlooooad
 	except Exception as e:
 		sys.stdout.write(traceback.format_exc())
-		sys.stdout.write("Error: " + e)
+		sys.stdout.write(f"Error: {e}")
 	finally:
 		logging.info("Finished work.")
-		input("Press any button to exit")
 
 
 try:
@@ -143,4 +144,4 @@ except KeyboardInterrupt:
 	sys.exit(0)
 except Exception as e:
 	sys.stdout.write(traceback.format_exc())
-	sys.stdout.write("Error: " + e)
+	sys.stdout.write(f"Error: {e}")
