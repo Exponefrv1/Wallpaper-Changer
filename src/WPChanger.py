@@ -75,23 +75,23 @@ def change_wallpaper():
 	timeout = get_timeout() # get timeout
 	while True: # INFINITE LOOP, WOW!
 		for name in wallpaper_names: # for wp in all wallpapers
-			path = os.getcwd()+'\\images\\{}'.format(name) # path to wallpaper 
+			path = os.getcwd()+'\\images\\{}'.format(name) # path to wallpaper
 			ctypes.windll.user32.SystemParametersInfoW(20, 0, path, 0) # change image (wiiiiindows)
 			logging.info(f"WP changed on {name}")
 			time.sleep(timeout) # sleeeeeeeeeep
 
 # minimize to tray func
 def create_tray_icon():
-	logger.info("Minimizing to tray...")
+	logging.info("Minimizing to tray...")
 	image = Image.open("wp.ico") # open icon with pillow
 	menu_item1 = pystray.MenuItem('Показать консоль', show_console) # new button for tray icon (if you click RMB you'll see it)
 	menu_item2 = pystray.MenuItem('Спрятать консоль', hide_console) # another new button
 	menu_items = (menu_item1, menu_item2,) # all buttons
 	icon = pystray.Icon("WP Changer", image, "WP Changer", menu_items) # setup Icon object
-	logger.info("Minimized!")
+	logging.info("Minimized!")
 	icon.run() # MINIMINIMIZE
 
-def starter(): 
+def starter():
 	logging.info("Launching wp changer\n\n")
 	hide_console() # hiiiide ugly command prompt
 	change_wallpaper() # start changing wallpapers!
@@ -100,5 +100,5 @@ def starter():
 try:
 	threading.Thread(target=starter).start() # threading because pystray is idiot and i have infinite loop :p
 	threading.Thread(target=create_tray_icon).start()
-except:
+except Exception as e:
 	sys.stdout.write(traceback.format_exc())
