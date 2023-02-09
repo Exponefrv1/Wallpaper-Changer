@@ -1,6 +1,6 @@
- # -*- coding: utf-8 -*- 
+ # -*- coding: utf-8 -*-
 
-# This is a script that changes the image on the desktop. 
+# This is a script that changes the image on the desktop.
 # Also responsible for minimizing to tray.
 
 import os
@@ -16,7 +16,7 @@ from PIL import Image
 
 
 logging.basicConfig(
-	level=logging.INFO, 
+	level=logging.INFO,
 	format='[%(asctime)s] [%(levelname)s] | %(message)s',
 	datefmt='%Y-%m-%d %H:%M:%S')
 
@@ -39,7 +39,10 @@ def show_console():
 def hide_console():
 	ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 0)
 
-# open config file 
+def cls():
+	os.system("cls")
+	
+# open config file
 def openConfig():
 	config = configparser.ConfigParser() # init
 	config.read("config.ini") # read the config file
