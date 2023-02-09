@@ -41,7 +41,7 @@ def hide_console():
 
 def cls():
 	os.system("cls")
-	
+
 # open config file
 def openConfig():
 	config = configparser.ConfigParser() # init
