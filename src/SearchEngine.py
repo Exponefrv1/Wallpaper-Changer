@@ -120,24 +120,7 @@ def dlResults(results):
 	logging.info("Finished downloading!")
 	return img_names # returns list
 
-# adding results to config
-def writeResults(img_names):
-	logging.info("Preparing to write results")
-	config = openConfig() # open config file
-	old_images = config["DEFAULT"]["images"].split(", ") # getting a list of old wallpapers from config
-	old_images_count = len(old_images)
-	if old_images_count > 2:
-		logging.info(f"{old_images_count} images was found in config file.")
-		for old_image in old_images:
-			img_names.append(old_image) # add old wallpapers to new
-			logging.info(f"{old_image} added to image names list")
-	config['DEFAULT'] = {"images": ", ".join(img_names)[:-1]} # write new wallpapers with old
-	logging.info("Finishing adding results to config...")
-	with open('config.ini', 'w') as configfile:
-		config.write(configfile) # finally add!
-	logging.info("Success!")
-
-
+# start function
 def launchSearchEngine():
 	try:
 		images = googleSearch() # seaaaarch
@@ -146,11 +129,6 @@ def launchSearchEngine():
 		sys.stdout.write("Error: " + e)
 	try:
 		downloaded_images = dlResults(images) # doooownlooooad
-	except Exception as e:
-		sys.stdout.write(traceback.format_exc())
-		sys.stdout.write("Error: " + e)
-	try:
-		writeResults(downloaded_images) # wriiiite results to confiiig
 	except Exception as e:
 		sys.stdout.write(traceback.format_exc())
 		sys.stdout.write("Error: " + e)

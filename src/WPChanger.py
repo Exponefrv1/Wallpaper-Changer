@@ -54,15 +54,6 @@ def exceptionExit(exception):
 	input("Press something to continue...")
 	cls()
 
-# get all wallpapers
-def get_names():
-	config = openConfig()
-	img_names = config["DEFAULT"]["images"].split(", ")
-	if len(img_names) < 3:
-		exceptionExit("Add at least 3 images then restart me.")
-		return sys.exit(0)
-	return img_names # returns list of wallpaper names
-
 # get timeout from config
 def get_timeout():
 	config = openConfig()
@@ -71,11 +62,12 @@ def get_timeout():
 # change desktop image
 def change_wallpaper():
 	logging.info("Ready! Now the wallpaper will change every 3 seconds!")
-	wallpaper_names = get_names() # get all wallpapers
 	timeout = get_timeout() # get timeout
 	while True: # INFINITE LOOP, WOW!
-		for name in wallpaper_names: # for wp in all wallpapers
-			path = os.getcwd()+'\\images\\{}'.format(name) # path to wallpaper
+		directory = os.getcwd()+'\\images'
+		files = [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
+		for name in files: # for wp in all wallpapers
+			path = f"{directory}\\{name}" # path to wallpaper
 			ctypes.windll.user32.SystemParametersInfoW(20, 0, path, 0) # change image (wiiiiindows)
 			logging.info(f"WP changed on {name}")
 			time.sleep(timeout) # sleeeeeeeeeep
