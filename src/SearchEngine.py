@@ -1,4 +1,4 @@
- # -*- coding: utf-8 -*- 
+ # -*- coding: utf-8 -*-
 
 # This file is designed to search for images for a given query on the Internet.
 # it's not a python plugin, it's a complete image search script!
@@ -14,7 +14,7 @@ from google_images_search import GoogleImagesSearch
 
 
 logging.basicConfig(
-	level=logging.INFO, 
+	level=logging.INFO,
 	format='[%(asctime)s] [%(levelname)s] | %(message)s',
 	datefmt='%Y-%m-%d %H:%M:%S')
 
@@ -43,7 +43,7 @@ def search_params(query, req_count):
 		'q': query,  # query
 		'num': req_count, # requests count
 		'fileType': 'jpg|png', # image type for wp
-		'imgSize': 'huge' # huge size for high image resolution 
+		'imgSize': 'huge' # huge size for high image resolution
 	}
 	return _search_params
 
@@ -109,7 +109,7 @@ def dlResults(results):
 			img = Image.open(f'images/image_{i}.jpg') # open image in pillow for analyzing
 			width, height = img.size # get the width and height of image
 			if width < 1920 or height < 1080: # check if resolution is greater or equal 1920x1080
-				img.close() # close opened image 
+				img.close() # close opened image
 				os.remove(f'images/image_{i}.jpg') # remove image if bad resolution
 				logging.info(f"Image {i} has a bad resolution. Successfully Removed.")
 			else:
@@ -141,15 +141,15 @@ def writeResults(img_names):
 def launchSearchEngine():
 	try:
 		images = googleSearch() # seaaaarch
-	except:
+	except Exception as e:
 		sys.stdout.write(traceback.format_exc())
 	try:
 		downloaded_images = dlResults(images) # doooownlooooad
-	except:
+	except Exception as e:
 		sys.stdout.write(traceback.format_exc())
 	try:
 		writeResults(downloaded_images) # wriiiite results to confiiig
-	except:
+	except Exception as e:
 		sys.stdout.write(traceback.format_exc())
 	finally:
 		logging.info("Finished work.")
