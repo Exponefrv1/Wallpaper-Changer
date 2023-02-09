@@ -102,3 +102,4 @@ try:
 	threading.Thread(target=create_tray_icon).start()
 except Exception as e:
 	sys.stdout.write(traceback.format_exc())
+	sys.stdout.write("Error: " + e)
