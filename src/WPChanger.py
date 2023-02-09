@@ -77,8 +77,8 @@ def change_wallpaper():
 def create_tray_icon():
 	logging.info("Minimizing to tray...")
 	image = Image.open("wp.ico") # open icon with pillow
-	menu_item1 = pystray.MenuItem('Показать консоль', show_console) # new button for tray icon (if you click RMB you'll see it)
-	menu_item2 = pystray.MenuItem('Спрятать консоль', hide_console) # another new button
+	menu_item1 = pystray.MenuItem('Show console', show_console) # new button for tray icon (if you click RMB you'll see it)
+	menu_item2 = pystray.MenuItem('Hide console', hide_console) # another new button
 	menu_items = (menu_item1, menu_item2,) # all buttons
 	icon = pystray.Icon("WP Changer", image, "WP Changer", menu_items) # setup Icon object
 	logging.info("Minimized!")
